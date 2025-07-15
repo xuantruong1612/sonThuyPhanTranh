@@ -11,14 +11,18 @@ import java.io.File;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 
-public class STPT
-{
+/**
+ *
+ * @author TRUONG
+ */
+
+public class STPT {
     public static void main(final String[] args) {
-//        GameScr.init();
+        // GameScr.init();
         final int pos = 19197;
         Server.start(pos);
     }
-    
+
     public static byte[] getFile(final String url) {
         try {
             final FileInputStream openFileInput = new FileInputStream(url);
@@ -33,13 +37,12 @@ public class STPT
             }
             openFileInput.close();
             return byteArrayOutputStream.toByteArray();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
-    
+
     protected static void saveFile(final String url, final byte[] ab) {
         try {
             final File f = new File(url);
@@ -51,18 +54,16 @@ public class STPT
             fos.write(ab);
             fos.flush();
             fos.close();
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     public static void writeByteArray(final Message msg, final byte[] ab) {
         try {
             msg.writer().writeInt(ab.length);
             msg.writer().write(ab);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

@@ -4,11 +4,15 @@
 
 package network;
 
-public interface ISession
-{
+/**
+ *
+ * @author TRUONG
+ */
+
+public interface ISession {
     boolean isConnected();
-    
+
     void sendMessage(final Message p0);
-    
+
     void close();
 }

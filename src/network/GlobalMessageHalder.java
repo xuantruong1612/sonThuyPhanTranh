@@ -14,20 +14,25 @@ import stpt.ObjectData;
 import stpt.Player;
 import stpt.STPT;
 
+/**
+ *
+ * @author TRUONG
+ */
+
 public class GlobalMessageHalder {
 
     public static void onMessage(final Message msg, final Session_ME session) {
-//        User user = null;
-//        Char _char = null;
-//        TileMap tileMap = null;
+        // User user = null;
+        // Char _char = null;
+        // TileMap tileMap = null;
         if (msg != null) {
-//            if (session.user != null) {
-//                user = session.user;
-//                if (session.user.player != null) {
-//                    _char = session.user.player.getMyChar();
-//                    tileMap = _char.tileMap;
-//                }
-//            }
+            // if (session.user != null) {
+            // user = session.user;
+            // if (session.user.player != null) {
+            // _char = session.user.player.getMyChar();
+            // tileMap = _char.tileMap;
+            // }
+            // }
             try {
                 System.out.println("Send msg " + msg.getCommand());
                 switch (msg.getCommand()) {
@@ -62,7 +67,7 @@ public class GlobalMessageHalder {
                         System.out.println("Model: " + model);
                         System.out.println("IMEI: " + imei);
                         System.out.println("Version: " + version);
-//                        sendMainCharInfo(session);
+                        // sendMainCharInfo(session);
                         break;
                     case -118:
                         String name = msg.reader().readUTF();
@@ -122,7 +127,7 @@ public class GlobalMessageHalder {
                     short x = msg.reader().readShort();
                     short y = msg.reader().readShort();
                     short typeMove = msg.reader().readByte();
-                    System.out.println("x "+x +" y "+ " typemove "+typeMove);
+                    System.out.println("x " + x + " y " + " typemove " + typeMove);
                     break;
             }
         } catch (Exception e) {
@@ -153,18 +158,19 @@ public class GlobalMessageHalder {
         Message msg = null;
         byte[] ab = null;
         try {
-//             String filePath = "C:\\Users\\lapla\\Documents\\NetBeansProjects\\STPT\\data\\cache\\check_version_game_data";
+            // String filePath =
+            // "C:\\Users\\lapla\\Documents\\NetBeansProjects\\STPT\\data\\cache\\check_version_game_data";
 
             if (type != 21) {
                 ab = STPT.getFile("C:\\Users\\lapla\\Documents\\NetBeansProjects\\STPT\\data\\getdata\\" + type);
             }
 
             if (session != null) {
-//             FileInputStream fis = new FileInputStream(filePath);
-//             DataInputStream dis = new DataInputStream(fis);
-//             short x = dis.readShort();
-//             short y = dis.readShort();
-//             System.out.println("x>>>>>"+ x + " y >>>>> "+ y);
+                // FileInputStream fis = new FileInputStream(filePath);
+                // DataInputStream dis = new DataInputStream(fis);
+                // short x = dis.readShort();
+                // short y = dis.readShort();
+                // System.out.println("x>>>>>"+ x + " y >>>>> "+ y);
 
                 msg = new Message((byte) -11);
                 if (type == 21) {
@@ -178,7 +184,7 @@ public class GlobalMessageHalder {
                     session.sendMessage(msg);
                 }
 
-//                msg.cleanup();
+                // msg.cleanup();
             }
 
         } catch (Exception e) {
@@ -251,14 +257,16 @@ public class GlobalMessageHalder {
     protected static void sendCheck_version_game_data(final Session_ME session) {
         Message msg = null;
         try {
-//             String filePath = "C:\\Users\\lapla\\Documents\\NetBeansProjects\\STPT\\data\\cache\\check_version_game_data";
-            final byte[] ab = STPT.getFile("C:\\Users\\lapla\\Documents\\NetBeansProjects\\STPT\\data\\cache\\check_version_game_data");
+            // String filePath =
+            // "C:\\Users\\lapla\\Documents\\NetBeansProjects\\STPT\\data\\cache\\check_version_game_data";
+            final byte[] ab = STPT.getFile(
+                    "C:\\Users\\lapla\\Documents\\NetBeansProjects\\STPT\\data\\cache\\check_version_game_data");
             if (ab != null) {
-//             FileInputStream fis = new FileInputStream(filePath);
-//             DataInputStream dis = new DataInputStream(fis);
-//             short x = dis.readShort();
-//             short y = dis.readShort();
-//             System.out.println("x>>>>>"+ x + " y >>>>> "+ y);
+                // FileInputStream fis = new FileInputStream(filePath);
+                // DataInputStream dis = new DataInputStream(fis);
+                // short x = dis.readShort();
+                // short y = dis.readShort();
+                // System.out.println("x>>>>>"+ x + " y >>>>> "+ y);
                 msg = new Message((byte) -10);
                 STPT.writeByteArray(msg, ab);
                 session.sendMessage(msg);
@@ -289,13 +297,13 @@ public class GlobalMessageHalder {
         try {
             String user = m.reader().readUTF();
             String pass = m.reader().readUTF();
-//            m.cleanup();
+            // m.cleanup();
             m = new Message(0);
             m.writer().writeBoolean(false);
             m.writer().writeByte(1);
 
             session.sendMessage(m);
-            
+
             sendMainCharInfo(session);
             sendMsg_SubCommand_Global(session, (byte) 17);
             sendMsg_SubCommand_Global(session, (byte) 2);
@@ -323,22 +331,21 @@ public class GlobalMessageHalder {
             System.err.println("Error reading login info: " + ex.toString());
         }
     }
-    
 
-//    public static void sendMainCharInfo(Session_ME session) {
-//        byte[] data = null;
-//        Message m = null;
-//        try {
-//            data = STPT.getFile("data/mainCharInfo");
-//            m = new Message(-124);
-//            m.writer().write(data);
-//            session.sendMessage(m);
-//
-//            System.out.println("Send Nhan Vat Oke");
-//        } catch (IOException ex) {
-//            System.err.println("Error reading load image: " + ex.toString());
-//        }
-//    }
+    // public static void sendMainCharInfo(Session_ME session) {
+    // byte[] data = null;
+    // Message m = null;
+    // try {
+    // data = STPT.getFile("data/mainCharInfo");
+    // m = new Message(-124);
+    // m.writer().write(data);
+    // session.sendMessage(m);
+    //
+    // System.out.println("Send Nhan Vat Oke");
+    // } catch (IOException ex) {
+    // System.err.println("Error reading load image: " + ex.toString());
+    // }
+    // }
 
     private static void readLoadImage(Message m, byte type, Session_ME session) {
         byte[] data = null;
@@ -349,7 +356,7 @@ public class GlobalMessageHalder {
             m.writer().writeByte(type);
             m.writer().writeShort(id);
             m.writer().write(data);
-//        STPT.writeByteArray(m, data);
+            // STPT.writeByteArray(m, data);
             session.sendMessage(m);
             System.out.println("Load Image:");
             System.out.println("Type: " + type + " id " + id);
@@ -370,7 +377,7 @@ public class GlobalMessageHalder {
             m.writer().writeByte(type);
             m.writer().writeUTF(patch);
             m.writer().write(data);
-//        STPT.writeByteArray(m, data);
+            // STPT.writeByteArray(m, data);
             session.sendMessage(m);
             System.out.println("Load Image:");
             System.out.println("Type: " + type + " patch " + patch);
@@ -382,7 +389,7 @@ public class GlobalMessageHalder {
     public static void sendMainCharInfo(Session_ME session) {
         try {
             // Gửi thông tin của nhân vật chính\
-            Player player = new Player(session,"admin",1);
+            Player player = new Player(session, "admin", 1);
 
             Message m = new Message(-124);
             m.writer().writeInt(player.getID());
@@ -399,7 +406,7 @@ public class GlobalMessageHalder {
             m.writer().writeShort(player.getWeapon());
             m.writer().writeByte(player.effectPart.length);
             for (int i = 0; i < player.effectPart.length; i++) {
-            m.writer().writeShort(player.effectPart[i]);
+                m.writer().writeShort(player.effectPart[i]);
             }
             m.writer().writeShort(player.getLv());
             m.writer().writeShort(player.getPercent());
@@ -432,54 +439,55 @@ public class GlobalMessageHalder {
             final byte b = msg.reader().readByte();
             Util.log("messageNotLogin " + b);
             switch (b) {
-//                case -127: {
-//                    if (!session.login) {
-//                        Service.ClearCache(session);
-//                        final String uname = msg.reader().readUTF();
-//                        final String passw = msg.reader().readUTF();
-//                        final String version = msg.reader().readUTF();
-//                        final String t1 = msg.reader().readUTF();
-//                        final String packages = msg.reader().readUTF();
-//                        final String random = msg.reader().readUTF();
-//                        final byte sv = msg.reader().readByte();
-//                        msg.cleanup();
-//                        final User user = User.Login(session, uname, passw);
-//                        if (user != null) {
-//                            session.user = user;
-//                            session.login = true;
-//                            Service.requestLogin(session);
-//                            session.setDelayOut(120000, false);
-//                            Util.log("Login Sucessfully " + uname + " passs " + passw);
-//                        } else {
-//                            Util.log("Login Faild " + uname + " passs " + passw);
-//                        }
-//                        session.versionNja = version;
-//                        break;
-//                    }
-//                    Service.ClearCache(session);
-//                    session.setDelayOut(10, true);
-//                    break;
-//                }
-//                case -125: {
-//                    if (!session.login) {
-//                        session.client_type = msg.reader().readByte();
-//                        session.zoomLevel = msg.reader().readByte();
-//                        session.isGPS = msg.reader().readBoolean();
-//                        session.width = msg.reader().readInt();
-//                        session.height = msg.reader().readInt();
-//                        session.isQwert = msg.reader().readBoolean();
-//                        session.isTouch = msg.reader().readBoolean();
-//                        session.plastfrom = msg.reader().readUTF();
-//                        session.versionIp = msg.reader().readInt();
-//                        msg.reader().readByte();
-//                        session.languageId = msg.reader().readByte();
-//                        session.provider = msg.reader().readInt();
-//                        session.agent = msg.reader().readUTF();
-//                        Util.log("Client type " + session.client_type + " zoomlevel " + session.zoomLevel + " width " + session.width + " height " + session.height);
-//                        break;
-//                    }
-//                    break;
-//                }
+                // case -127: {
+                // if (!session.login) {
+                // Service.ClearCache(session);
+                // final String uname = msg.reader().readUTF();
+                // final String passw = msg.reader().readUTF();
+                // final String version = msg.reader().readUTF();
+                // final String t1 = msg.reader().readUTF();
+                // final String packages = msg.reader().readUTF();
+                // final String random = msg.reader().readUTF();
+                // final byte sv = msg.reader().readByte();
+                // msg.cleanup();
+                // final User user = User.Login(session, uname, passw);
+                // if (user != null) {
+                // session.user = user;
+                // session.login = true;
+                // Service.requestLogin(session);
+                // session.setDelayOut(120000, false);
+                // Util.log("Login Sucessfully " + uname + " passs " + passw);
+                // } else {
+                // Util.log("Login Faild " + uname + " passs " + passw);
+                // }
+                // session.versionNja = version;
+                // break;
+                // }
+                // Service.ClearCache(session);
+                // session.setDelayOut(10, true);
+                // break;
+                // }
+                // case -125: {
+                // if (!session.login) {
+                // session.client_type = msg.reader().readByte();
+                // session.zoomLevel = msg.reader().readByte();
+                // session.isGPS = msg.reader().readBoolean();
+                // session.width = msg.reader().readInt();
+                // session.height = msg.reader().readInt();
+                // session.isQwert = msg.reader().readBoolean();
+                // session.isTouch = msg.reader().readBoolean();
+                // session.plastfrom = msg.reader().readUTF();
+                // session.versionIp = msg.reader().readInt();
+                // msg.reader().readByte();
+                // session.languageId = msg.reader().readByte();
+                // session.provider = msg.reader().readInt();
+                // session.agent = msg.reader().readUTF();
+                // Util.log("Client type " + session.client_type + " zoomlevel " +
+                // session.zoomLevel + " width " + session.width + " height " + session.height);
+                // break;
+                // }
+                // break;
+                // }
             }
         } catch (Exception e) {
             e.printStackTrace();

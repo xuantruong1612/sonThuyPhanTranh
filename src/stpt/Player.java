@@ -2,6 +2,11 @@ package stpt;
 
 import network.Session_ME;
 
+/**
+ *
+ * @author TRUONG
+ */
+
 public class Player {
 
     public int ID;
@@ -49,7 +54,7 @@ public class Player {
         this.body = 212;
         this.cloak = -1;
         this.weapon = 9;
-        this.effectPart = new short[]{-1, -1, -1, -1, -1, -1};
+        this.effectPart = new short[] { -1, -1, -1, -1, -1, -1 };
         this.level = 0;
         this.percent = 0;
         this.mili_lv = 0;

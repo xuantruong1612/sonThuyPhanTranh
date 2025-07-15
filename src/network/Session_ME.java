@@ -13,6 +13,11 @@ import stpt.Client;
 import stpt.Player;
 import stpt.Server;
 
+/**
+ *
+ * @author TRUONG
+ */
+
 public class Session_ME implements ISession {
 
     private static final byte[] key;
@@ -91,9 +96,9 @@ public class Session_ME implements ISession {
                 byte b = m.getCommand();
                 if (data != null) {
                     final int size = data.length;
-//                    if (size > 65535) {
-//                        b = -32;
-//                    }
+                    // if (size > 65535) {
+                    // b = -32;
+                    // }
                     if (this.getKeyComplete) {
                         this.dos.writeByte(this.writeKey(b));
                     } else {
@@ -131,7 +136,8 @@ public class Session_ME implements ISession {
                     }
                     this.sendByteCount += 5 + data.length;
                     this.dos.write(data);
-                    System.out.println("do mss " + b + " szie " + (this.sendByteCount + this.recvByteCount) / 1024 + "." + (this.sendByteCount + this.recvByteCount) % 1024 / 102 + " kb");
+                    System.out.println("do mss " + b + " szie " + (this.sendByteCount + this.recvByteCount) / 1024 + "."
+                            + (this.sendByteCount + this.recvByteCount) % 1024 / 102 + " kb");
                 } else {
                     this.sendByteCount += 5;
                 }
@@ -167,7 +173,7 @@ public class Session_ME implements ISession {
     public void close() {
         try {
             if (this.player != null) {
-//                this.player.close();
+                // this.player.close();
                 this.player = null;
             }
             Client.removeClinet(this);
@@ -246,7 +252,7 @@ public class Session_ME implements ISession {
     }
 
     static {
-        key = new byte[]{68};
+        key = new byte[] { 68 };
     }
 
     private class Sender implements Runnable {
@@ -272,17 +278,17 @@ public class Session_ME implements ISession {
                         Session_ME.this.doSendMessage(m);
                     }
                     if (Session_ME.this.isConnected()) {
-//                        if (Session_ME.this.user != null && Session_ME.this.user.player != null) {
-//                            final Char charz = Session_ME.this.user.player.getMyChar();
-//                            if (charz == null || charz.tileMap != null) {}
-//                        }
+                        // if (Session_ME.this.user != null && Session_ME.this.user.player != null) {
+                        // final Char charz = Session_ME.this.user.player.getMyChar();
+                        // if (charz == null || charz.tileMap != null) {}
+                        // }
                         if (Session_ME.this.backupTime > 0) {
                             final Session_ME this$0 = Session_ME.this;
                             this$0.backupTime -= 10;
                             if (Session_ME.this.backupTime <= 0) {
-//                                if (Session_ME.this.user != null) {
-//                                    Session_ME.this.user.flush();
-//                                }
+                                // if (Session_ME.this.user != null) {
+                                // Session_ME.this.user.flush();
+                                // }
                                 Session_ME.this.backupTime = 5000;
                             }
                         }

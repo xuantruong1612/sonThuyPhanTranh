@@ -4,13 +4,17 @@
 
 package network;
 
-public interface IMessageHandler
-{
+/**
+ *
+ * @author TRUONG
+ */
+
+public interface IMessageHandler {
     void onConnectOK();
-    
+
     void onConnectionFail();
-    
+
     void onDisconnected();
-    
+
     void onMessage(final Message p0);
 }

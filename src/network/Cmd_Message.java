@@ -2,10 +2,12 @@ package network;
 
 import java.io.IOException;
 
-public class Cmd_Message
-{
-	
+/**
+ *
+ * @author TRUONG
+ */
 
+public class Cmd_Message {
 	protected Message m;
 
 	public byte GET_SESSION_ID = -27;
@@ -184,5 +186,4 @@ public class Cmd_Message
 
 	public byte GLOBAL_SAOTHAN = 41;
 
-	
 }

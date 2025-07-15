@@ -7,10 +7,11 @@ package stpt;
 
 /**
  *
- * @author lapla
+ * @author TRUONG
  */
+
 public class Item {
-    	public byte colorName;
+	public byte colorName;
 
 	public byte typeObject;
 
@@ -93,5 +94,5 @@ public class Item {
 	public boolean isCanTrade;
 
 	public boolean isShop;
-       
+
 }
